@@ -12,6 +12,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.CadastroPage;
 import pages.LoginPage;
 
+import javax.swing.*;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class LoginStep {
@@ -57,9 +60,25 @@ public class LoginStep {
     public void possuoCadastro() {
         cadastroPage.clicarCadastrar();
         cadastroPage.preencherEmail("teste@teste.com");
-        cadastroPage.preencherNome("Teste Qa");
+        cadastroPage.preencherNome("Qa Teste");
         cadastroPage.preencherSenha("teste");
         cadastroPage.preencherConfirmaSenha("teste");
+        cadastroPage.clicarCriarComSaldo();
+        cadastroPage.clicarCadastrar();
+        cadastroPage.clicarFechar();
+    }
+
+    @Dado("preencho o cadastro com os dados")
+    public void possuoCadastroDataTable(List<Map<String, String>> dataTable) {
+        String email = datatable.get(0).get("Email");
+        String nome = datatable.get(0).get("Nome");
+        String senha = datatable.get(0).get("Senha");
+        String confirmacao = datatable.get(0).get("Confirmacao");
+        cadastroPage.clicarCadastrar();
+        cadastroPage.preencherEmail();
+        cadastroPage.preencherNome();
+        cadastroPage.preencherSenha();
+        cadastroPage.preencherConfirmaSenha();
         cadastroPage.clicarCriarComSaldo();
         cadastroPage.clicarCadastrar();
         cadastroPage.clicarFechar();
